@@ -1,0 +1,39 @@
+{
+   "name": "assignment-7",
+   "version": "1.0.0",
+   "description": "원티드 X 위코드 프리 온보딩 4주차 기업형 과제(카닥)",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "ts-node src/index.ts",
+      "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7/issues"
+   },
+   "homepage": "https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7#readme",
+   "dependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node": "^16.11.10",
+      "@types/zen-observable": "^0.8.3",
+      "express": "^4.17.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "sqlite": "^4.0.23",
+      "sqlite3": "^5.0.2",
+      "tsc-watch": "^4.5.0",
+      "typeorm": "0.2.41"
+   },
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "nodemon": "^2.0.15",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   }
+}
