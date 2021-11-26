@@ -1,18 +1,14 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-
+import { Entity, Column, OneToMany } from "typeorm";
+import { Base } from './base.entity';
+import dotenv from "dotenv";
+dotenv.config();
 @Entity()
-export class User {
+export class User extends Base {
 
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
-    firstName: string;
+    @Column({ unique: true })
+    email: string;
 
     @Column()
-    lastName: string;
-
-    @Column()
-    age: number;
+    password: string;
 
 }

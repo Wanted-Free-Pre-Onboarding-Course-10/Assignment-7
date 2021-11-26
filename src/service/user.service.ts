@@ -8,6 +8,12 @@ export class UserService {
         this.userRepository = getConnection().getRepository(User);
     }
 
+    async findUserByEmail(email: string) {
+        const user = await this.userRepository
+            .findOne({ where: { email: email } });
+        return user;
+    }
+
     async createUser(createUserInfo) {
         const { email } = createUserInfo;
         const user = await this.userRepository
