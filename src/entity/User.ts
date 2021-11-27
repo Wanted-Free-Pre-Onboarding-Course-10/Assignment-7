@@ -1,7 +1,7 @@
 import { Entity, Column, OneToMany } from "typeorm";
 import { Base } from './base.entity';
-import { Tire } from './Tire';
 import dotenv from "dotenv";
+import { Trim } from "./Trim";
 dotenv.config();
 @Entity()
 export class User extends Base {
@@ -12,5 +12,6 @@ export class User extends Base {
     @Column()
     password: string;
 
-    @OneToMany(() => Tire, tire => tire.user)
-    tire: Tire[];
+    @OneToMany(() => Trim, trim => trim.user)
+    tire: Trim[];
+}

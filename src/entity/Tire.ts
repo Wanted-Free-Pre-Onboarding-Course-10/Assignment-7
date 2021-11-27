@@ -1,32 +1,24 @@
 import { Entity, Column, ManyToOne } from "typeorm";
 import { Base } from './base.entity';
-import { User } from './User';
+import { Trim } from './Trim';
 import dotenv from "dotenv";
 dotenv.config();
 @Entity()
 export class Tire extends Base {
 
-    @Column({ unique: true })
-    trimId: number;
+    @Column({ nullable: false })
+    width: number;
 
     @Column({ nullable: false })
-    frontWidth: number;
+    aspectRatio: number;
 
     @Column({ nullable: false })
-    frontAspectRatio: number;
+    wheelSize: number;
 
     @Column({ nullable: false })
-    frontWheelSize: number;
+    type: number;
 
-    @Column({ nullable: false })
-    rearWidth: number;
+    @ManyToOne(() => Trim, trim => trim, { onDelete: 'CASCADE' })
+    trim: Trim;
 
-    @Column({ nullable: false })
-    rearAspectRatio: number;
-
-    @Column({ nullable: false })
-    rearWheelSize: number;
-
-    @ManyToOne(() => User, user => user.tire, { onDelete: 'CASCADE' })
-    user: User;
 }
