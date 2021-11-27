@@ -1,5 +1,5 @@
 import { Response, NextFunction } from "express"
-import { Jwt } from "../jwt-util/jwt-utils";
+import { Jwt } from "../utils/jwt-utils";
 import { DecodedRequest } from "../definition/decoded_jwt";
 
 export const authJwt = (req: DecodedRequest, res: Response, next: NextFunction) => {

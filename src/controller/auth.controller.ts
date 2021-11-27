@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpException } from '../exception/http_exception'
 import { AuthException } from '../exception/auth_exception';
-import { Jwt } from "../jwt-util/jwt-utils";
+import { Jwt } from "../utils/jwt-utils";
 import passport from "passport";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";

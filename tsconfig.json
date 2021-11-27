@@ -12,6 +12,7 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "esModuleInterop": true,
-      "noImplicitAny": false
+      "noImplicitAny": false,
+      "allowSyntheticDefaultImports": true
    }
 }
