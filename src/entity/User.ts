@@ -5,7 +5,7 @@ import { Trim } from "./trim";
 export class User extends Base {
 
     @Column({ unique: true })
-    user: string;
+    username: string;
 
     @Column()
     password: string;

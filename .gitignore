@@ -130,3 +130,5 @@ config
 
 
 *package-lock.json
+
+./database.sqlite
