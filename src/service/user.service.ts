@@ -1,4 +1,4 @@
-import { getConnection, QueryRunner, Repository } from "typeorm";
+import { getConnection, Repository } from "typeorm";
 import { User } from "../entity/user";
 
 export class UserService {
@@ -15,11 +15,11 @@ export class UserService {
     }
 
     async createUser(createUserInfo) {
-        const { email } = createUserInfo;
-        const user = await this.userRepository
-            .findOne({ where: { email: email } });
-        if (user) {
-            return { exUser: user, newUser: undefined };
+        const { user } = createUserInfo;
+        const exUser = await this.userRepository
+            .findOne({ where: { user: user } });
+        if (exUser) {
+            return { exUser: exUser, newUser: undefined };
         }
         const newUser = await this.userRepository.save(createUserInfo);
         return { exUser: undefined, newUser: newUser };

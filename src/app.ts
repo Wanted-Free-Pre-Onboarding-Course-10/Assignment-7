@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import dotenv from "dotenv";
 import express, { Express } from "express";
+import { applicationRouter } from './routes/applicationRouter';
 import bodyParser from 'body-parser';
 
 dotenv.config();
@@ -15,6 +16,7 @@ export class Application {
         this._server.set('port', process.env.PORT || 3000);
         this._server.use(bodyParser.json());
         this._server.use(bodyParser.urlencoded({ extended: true }));
+        this._server.use(applicationRouter);
     }
 
     public startServer(): void {

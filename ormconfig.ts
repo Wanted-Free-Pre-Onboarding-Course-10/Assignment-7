@@ -1,26 +1,23 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 export = {
    type: "sqlite",
-   //database: "database.sqlite",
-   database: ":memory:",
+   database: "database.sqlite",
+   // database: ":memory:",
    synchronize: true,
-   logging: false,
-   seeds: ['src/app/database/seeds /**/*.seed.ts'
+   logging: true,
+   seeds: ['src/database/seeds /**/*.seed.ts'
    ],
    entities: [
-      "src/app/entity/**/*.ts"
+      "src/entity/**/*.ts"
    ],
    migrations: [
-      "src/app/migration/**/*.ts"
+      "src/migration/**/*.ts"
    ],
    subscribers: [
-      "src/app/subscriber/**/*.ts"
+      "src/subscriber/**/*.ts"
    ],
    cli: {
-      entitiesDir: "src/app/entity",
-      migrationsDir: "src/app/migration",
-      subscribersDir: "src/app/subscriber",
+      entitiesDir: "src/entity",
+      migrationsDir: "src/migration",
+      subscribersDir: "src/subscriber",
    },
 };
