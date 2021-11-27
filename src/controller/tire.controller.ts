@@ -1,20 +1,22 @@
 import { Response, NextFunction } from 'express';
 import { DecodedRequest } from '../definition/decoded_jwt';
-import { carcodapi } from '../utils/cardocApi';
-
+import { TireService } from '../service/tire.service';
+import { TrimService } from '../service/trim.service';
 export class TireController {
+
+    private tireService: TireService;
+    private trimService: TrimService;
 
     public async get(req: DecodedRequest, res: Response, next: NextFunction) {
         const { username, trimId } = req.body;
     }
 
     public async post(req: DecodedRequest, res: Response, next: NextFunction) {
-        const { username, trimId } = req.body;
-
-        const data = await carcodapi.getApi(trimId);
-        console.log(data)
-        return res.status(200).json({
-            data: data
-        });
+        const trimList = req.body;
+        this.trimService = new TrimService();
+        this.tireService = new TireService();
+        const data = await this.trimService.findTrimById(trimList);
+        const apiData = await this.tireService.getDataFromCardoc(data);
+        return res.json(1);
     }
 }

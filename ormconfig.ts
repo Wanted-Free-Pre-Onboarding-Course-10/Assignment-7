@@ -2,7 +2,7 @@ export = {
    type: "sqlite",
    database: "database.sqlite",
    // database: ":memory:",
-   synchronize: true,
+   synchronize: false,
    logging: true,
    seeds: ['src/database/seeds /**/*.seed.ts'
    ],
