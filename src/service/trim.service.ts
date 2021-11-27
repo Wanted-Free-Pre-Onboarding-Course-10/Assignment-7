@@ -9,13 +9,17 @@ export class TrimService {
     }
     // 해당 트림이 있는지 확인하는 로직 
     public async findTrimById(trimList) {
-        const checkTrimList: string[] = [];
+        const checkTrimList = [];
         for (let i = 0; i < trimList.length; i++) {
             const trim = await this.trimRepository.findOne({
                 where: { id: trimList[i].trimId }
             })
             if (!trim) {
-                checkTrimList.push(trimList[i].trimId);
+                const info = {
+                    user: trimList[i].id,
+                    trim: trimList[i].trimId
+                }
+                checkTrimList.push(info);
             }
         }
         return checkTrimList;

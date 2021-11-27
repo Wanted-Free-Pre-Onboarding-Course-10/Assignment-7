@@ -15,8 +15,8 @@ export class TireController {
         const trimList = req.body;
         this.trimService = new TrimService();
         this.tireService = new TireService();
-        const data = await this.trimService.findTrimById(trimList);
-        const apiData = await this.tireService.getDataFromCardoc(data);
+        const newTrimList = await this.trimService.findTrimById(trimList);
+        const apiData = await this.tireService.getDataFromCardoc(newTrimList);
         return res.json(1);
     }
 }
