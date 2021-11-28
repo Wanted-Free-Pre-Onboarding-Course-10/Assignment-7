@@ -14,7 +14,13 @@ export class TireController {
     private userSerivce: UserService;
 
     public async get(req: DecodedRequest, res: Response, next: NextFunction) {
-        const { username, trimId } = req.body;
+        const { username } = req.body;
+        this.userSerivce = new UserService();
+        const userInfo = await this.userSerivce.findUserInfoByUsername(username)
+        return res.status(200).json({
+            message: "Success",
+            data: userInfo
+        });
     }
 
     public async post(req: DecodedRequest, res: Response, next: NextFunction) {
@@ -35,8 +41,10 @@ export class TireController {
         if (apiData.message == ERROR_MESSAGE.TRIM_NOT_FOUND_EXCEPTION)
             return next(new TrimNotFoundException(String(apiData.trimId)));
 
-        this.tireService.createTireInfo(apiData.data);
+        this.tireService.createTireAndTrim(apiData.data);
         this.tireService.linkTireInfo(apiData.data);
-        return res.status(200).json(apiData);
+        return res.status(200).json({
+            message: "Success"
+        });
     }
 }

@@ -3,7 +3,7 @@ export = {
    database: "database.sqlite",
    // database: ":memory:",
    synchronize: false,
-   logging: false,
+   logging: true,
    seeds: ['src/database/seeds /**/*.seed.ts'
    ],
    entities: [

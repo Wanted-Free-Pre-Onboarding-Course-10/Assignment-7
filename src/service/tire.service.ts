@@ -42,7 +42,7 @@ export class TireService {
         const parseNoExData = [];
         const exData = trimList.exTrimList;
         for (let i = 0; i < trimList.noExTrimList.length; i++) {
-            const apiData = await carcodapi.getCordocApi(trimList.noExTrimList[i].trim)
+            const apiData = await carcodapi.getCordocApi(trimList.noExTrimList[i].trimId)
             // 공공 API에 해당 TRIMID가 없는 경우
             if (apiData.message == ERROR_MESSAGE.TRIM_NOT_FOUND_EXCEPTION)
                 return {
@@ -70,7 +70,7 @@ export class TireService {
         };
     }
 
-    public async createTireAndTrim(queryRunner: QueryRunner, frontTire, rearTire, trim): Promise<any> {
+    public async createTireInfo(queryRunner: QueryRunner, frontTire, rearTire, trim): Promise<any> {
         console.log(frontTire, rearTire);
         const frontTireInfo = {
             width: frontTire[0],
@@ -90,7 +90,7 @@ export class TireService {
         await queryRunner.manager.getRepository(Tire).save(rearTireInfo);
     }
 
-    public async createTireInfo(data): Promise<any> {
+    public async createTireAndTrim(data): Promise<any> {
         console.log(data);
         const queryRunner: QueryRunner = getConnection().createQueryRunner();
         await queryRunner.connect();
@@ -108,7 +108,7 @@ export class TireService {
                 const trim = await this.trimRepository.save({ id: trimId });
                 exUser.trims.push(trim);
                 await queryRunner.manager.getRepository(User).save(exUser);
-                this.createTireAndTrim(queryRunner, frontTire, rearTire, trim);
+                this.createTireInfo(queryRunner, frontTire, rearTire, trim);
             }
             await queryRunner.commitTransaction();
         } catch (error) {
@@ -121,7 +121,6 @@ export class TireService {
     }
 
     public async linkTireInfo(data): Promise<any> {
-        console.log(data);
         for (let i = 0; i < data.exData.length; i++) {
             const trimId = data.exData[i].trimId;
             const exUser = await this.userRepository.findOne({
