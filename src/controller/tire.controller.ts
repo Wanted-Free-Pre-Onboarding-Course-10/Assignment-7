@@ -17,6 +17,9 @@ export class TireController {
     public async get(req: DecodedRequest, res: Response, next: NextFunction) {
         const { username } = req.body;
         this.userSerivce = new UserService();
+        const exUser = await this.userSerivce.findUserByUsername(username);
+        if (!exUser)
+            return next(new UserNotFoundException(String(username)));
         const userInfo = await this.userSerivce.findUserInfoByUsername(username)
         return res.status(200).json({
             message: "Success",
