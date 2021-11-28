@@ -1,6 +1,7 @@
+import { fail } from "assert";
 import { getConnection, Repository } from "typeorm";
 import { User } from "../entity/user";
-import { UserNotFoundException } from '../exception/user_not_found_exception'
+import { ERROR_MESSAGE } from '../exception/message'
 
 export class UserService {
     private userRepository: Repository<User>;
@@ -15,18 +16,24 @@ export class UserService {
         return user;
     }
 
-    async checkExUserByUsername(userList) {
+    async checkExUserByUsername(userList): Promise<any> {
         for (let i = 0; i < userList.length; i++) {
             const username = userList[i].id;
             const exUser = await this.userRepository
                 .findOne({ where: { username } });
-            if (!exUser) {
-                throw new UserNotFoundException(String(username));
-            }
+            // if (!exUser) {
+            //     return {
+            //         user: username,
+            //         message: ERROR_MESSAGE.USER_NOT_FOUND_EXCEPTION
+            //     };
+            // }
+        }
+        return {
+            message: "SUCCESS"
         }
     }
 
-    async createUser(createUserInfo) {
+    async createUser(createUserInfo): Promise<any> {
         const { username } = createUserInfo;
         const exUser = await this.userRepository
             .findOne({ where: { username } });

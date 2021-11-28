@@ -6,9 +6,6 @@ import { User } from './user';
 @Entity()
 export class Trim extends Base {
 
-    @Column({ nullable: false })
-    width: number;
-
     @ManyToMany(() => User, user => user.trims)
     users: User[];
 

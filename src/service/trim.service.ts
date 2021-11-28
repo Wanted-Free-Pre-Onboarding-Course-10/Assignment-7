@@ -36,8 +36,8 @@ export class TrimService {
         return checkTrimList;
     }
 
-    public async createTrim(createTrimInfo) {
-        const trim = await this.trimRepository.save(createTrimInfo);
+    public async createTrim(createTrimId) {
+        const trim = await this.trimRepository.save(createTrimId);
         return trim;
     }
 
