@@ -53,7 +53,6 @@
 ### 5. API 명세
 [API 명세서](https://app.swaggerhub.com/apis-docs/earthkingman/PreOnboardingCourse_CRUD_API/1.0.0#/)
 
-[SeedData](https://github.com/earthkingman/CRUD-API-NodeJS/wiki/SeedData)
 ### 6. 빌드 및 실행 방법
 - 파일명 변경 .env.sample ->  .env 
 ```
@@ -68,7 +67,8 @@
 - 접속
 
    http://localhost:3000/api-docs 
+### 7. 개발 시나리오
 
-### 7.개발 보고서
+### 8.이슈 사항
 
- [보고서](https://github.com/earthkingman/CRUD-API-NodeJS/wiki)
+
