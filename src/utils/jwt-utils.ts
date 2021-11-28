@@ -13,7 +13,7 @@ export class Jwt {
             id: user.id,
         };
         return jwt.sign(payload, this.secret, {
-            expiresIn: "5m",
+            expiresIn: "30m",
         });
     }
 
