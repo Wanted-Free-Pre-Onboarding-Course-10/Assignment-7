@@ -55,10 +55,12 @@
 
 ### 7. API 명세 
 (서버 주소 : http://3.36.121.236)를 잘 확인해주세요
-[API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
+
 1. 아래의 명세서를 클릭해주세요
-[API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
-2. 빨간색으로 체크한 박스를 눌러주세요
+
+   [API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
+
+2. 아래의 그림을 잘 따라해주세요. 빨간색으로 체크한 박스를 눌러주세요
 ![image](https://user-images.githubusercontent.com/48669085/143788413-276f08d3-23bd-4128-acae-544ede7649c2.png)
 ![image](https://user-images.githubusercontent.com/48669085/143788574-322bdf28-9b40-473d-ac8c-6c3e68c5d1c4.png)
 ![image](https://user-images.githubusercontent.com/48669085/143788484-edd0a0e6-d771-4c82-853f-8be693d71ce9.png)
