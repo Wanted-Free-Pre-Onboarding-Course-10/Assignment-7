@@ -53,8 +53,18 @@
 ### 6. 테이블 설계
 ![image](https://user-images.githubusercontent.com/48669085/143784301-7fdac721-f036-40de-a2fb-e834a82ee672.png)
 
-### 7. API 명세 (서버 배포)
-[API 명세서](https://app.swaggerhub.com/apis-docs/earthkingman/PreOnboardingCourse_CRUD_API/1.0.0#/)
+### 7. API 명세 (http://3.36.121.236)
+[API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
+1. 아래의 명세서를 클릭해주세요
+[API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
+2. 빨간색으로 체크한 박스를 눌러주세요
+![image](https://user-images.githubusercontent.com/48669085/143788413-276f08d3-23bd-4128-acae-544ede7649c2.png)
+![image](https://user-images.githubusercontent.com/48669085/143788574-322bdf28-9b40-473d-ac8c-6c3e68c5d1c4.png)
+![image](https://user-images.githubusercontent.com/48669085/143788484-edd0a0e6-d771-4c82-853f-8be693d71ce9.png)
+![image](https://user-images.githubusercontent.com/48669085/143788547-8e91fb6a-4fa6-4a6d-9fed-854929c995a3.png)
+![image](https://user-images.githubusercontent.com/48669085/143788550-42607d12-6a5f-4cde-befe-5bff9b341c29.png)
+
+
 
 ### 8.  빌드 및 실행 방법(로컬 환경)
 - 파일명 변경 .env.sample ->  .env 
