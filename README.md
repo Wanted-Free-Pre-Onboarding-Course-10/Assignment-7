@@ -71,6 +71,7 @@
    
 
 ### 9.개발 과정 중 이슈 사항
+#### 왜 이 방법을 사용했고, 어떻게 했는지 구현하였는지 기록하였습니다. 내용이 너무 길어 위키로 연결 해놓겠습니다.
 [API 보안](https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-earthkingman-/wiki/API-%EB%B3%B4%EC%95%88)
 
 [사용자가 소유한 타이어 정보를 저장하는 API](https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-earthkingman-/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EC%86%8C%EC%9C%A0%ED%95%9C-%ED%83%80%EC%9D%B4%EC%96%B4-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%A0%80%EC%9E%A5%ED%95%98%EB%8A%94-API)
