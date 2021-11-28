@@ -17,7 +17,7 @@ export class Application {
     constructor() {
         this._server = express();
         this._server.set('host', process.env.HOST || 'localhost');
-        this._server.set('port', process.env.PORT || 3000);
+        this._server.set('port', process.env.PORT || 4000);
         this._server.use(passport.initialize());
         this._server.use(bodyParser.json());
         this._server.use(bodyParser.urlencoded({ extended: true }));

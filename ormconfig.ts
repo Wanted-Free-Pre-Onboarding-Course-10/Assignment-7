@@ -4,7 +4,7 @@ export = {
    // database: ":memory:",
    synchronize: false,
    logging: true,
-   seeds: ['src/database/seeds /**/*.seed.ts'
+   seeds: ['src/database/seeds/**/*.seed.ts'
    ],
    entities: [
       "src/entity/**/*.ts"
