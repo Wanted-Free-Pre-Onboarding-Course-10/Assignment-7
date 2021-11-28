@@ -30,30 +30,31 @@
 ```bash
 
 ├── src
-│   ├── app
-│         ├── controller   (컨트롤러)
-│         ├── definition   (사용자 정의 타입 폴더)
-│         ├── entity       (DB 모델)
-│         ├── jwt-util     (인증 로직)
-│         ├── middlewares  (인증 및 에러 미들웨어)
-│         ├── routes       (라우터)
-│         ├── passport     (login 모듈)
-│         ├── seed         (seedData)
-│         ├── exception    (에러 클래스)
-│         ├── swagger      (API 문서)
-│         ├── index.ts 
-│         └── app.ts
+│    ├── controller   (컨트롤러)
+│    ├── definition   (사용자 정의 타입 폴더)
+│    ├── entity       (DB 모델)
+│    ├── jwt-util     (인증 로직)
+│    ├── middlewares  (인증 및 에러 미들웨어)
+│    ├── routes       (라우터)
+│    ├── passport     (login 모듈)
+│    ├── seed         (seedData)
+│    ├── exception    (에러 클래스)
+│    ├── index.ts 
+│    └── app.ts
 │
 ├── ormconfig.ts
 ├── package.json 
 └── tsconfig.json 
 
 ``` 
-    
-### 5. API 명세
+
+### 5. 테이블 설계
+![image](https://user-images.githubusercontent.com/48669085/143784301-7fdac721-f036-40de-a2fb-e834a82ee672.png)
+
+### 6. API 명세 (서버 배포)
 [API 명세서](https://app.swaggerhub.com/apis-docs/earthkingman/PreOnboardingCourse_CRUD_API/1.0.0#/)
 
-### 6. 빌드 및 실행 방법
+### 7.  빌드 및 실행 방법(로컬 환경)
 - 파일명 변경 .env.sample ->  .env 
 ```
   mv .env.sample .env
@@ -61,14 +62,16 @@
 - 명령어  (설치가 조금 오래 걸립니다. 조금만 기다려 주세요)
    ```shell
    npm i
-   npm run api-docs
    npm start
    ```
 - 접속
 
    http://localhost:3000/api-docs 
-### 7. 개발 시나리오
 
-### 8.이슈 사항
+### 8.개발 과정 중 이슈 사항
+[API 보안](https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-earthkingman-/wiki/API-%EB%B3%B4%EC%95%88)
 
+[사용자가 소유한 타이어 정보를 저장하는 API](https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-earthkingman-/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EC%86%8C%EC%9C%A0%ED%95%9C-%ED%83%80%EC%9D%B4%EC%96%B4-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%A0%80%EC%9E%A5%ED%95%98%EB%8A%94-API)
+
+[에러 응답 처리](https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-earthkingman-/wiki/ErrorClass)
 
