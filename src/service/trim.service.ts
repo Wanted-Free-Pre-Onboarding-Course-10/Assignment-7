@@ -18,13 +18,13 @@ export class TrimService {
             if (!trim) {
                 const info = {
                     user: trimList[i].id,
-                    trim: trimList[i].trimId
+                    trimId: trimList[i].trimId
                 }
                 noExTrimList.push(info);
             } else {
                 const info = {
                     user: trimList[i].id,
-                    trim: trimList[i].trimId
+                    trimId: trimList[i].trimId
                 }
                 exTrimList.push(info);
             }

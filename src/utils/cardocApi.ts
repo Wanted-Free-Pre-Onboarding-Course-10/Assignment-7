@@ -9,7 +9,7 @@ const getCordocApi = async (trimId: string) => {
         return {
             data: { frontTire, rearTire },
             message: "SUCCESS",
-            trimId: null
+            trimId: trimId
         };
     }).catch(() => {
         return {

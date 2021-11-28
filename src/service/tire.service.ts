@@ -1,4 +1,4 @@
-import { getConnection, Repository, Connection } from "typeorm";
+import { getConnection, Repository, Connection, QueryRunner } from "typeorm";
 import { Tire } from "../entity/tire";
 import { Trim } from "../entity/trim";
 import { carcodapi } from '../utils/cardocApi';
@@ -9,7 +9,6 @@ export class TireService {
     private tireRepository: Repository<Tire>;
     private trimRepository: Repository<Trim>;
     private userRepository: Repository<User>;
-    private connection: Connection;
 
     constructor() {
         this.tireRepository = getConnection().getRepository(Tire);
@@ -53,6 +52,7 @@ export class TireService {
             data.push(apiData.data)
             const parsInfo = {
                 user: trimList.noExTrimList[i].user,
+                trimId: trimList.noExTrimList[i].trimId,
                 frontTire: await this.parsingInfo(data[i].frontTire),
                 rearTire: await this.parsingInfo(data[i].rearTire)
             }
@@ -70,23 +70,68 @@ export class TireService {
         };
     }
 
-    public async createTireInfo(parseData): Promise<any> {
-
-        // for (let i = 0; i < parseData.parseNoExData.length; i++) {
-        //     const user = await this.userRepository.findOne()
-        //     const queryRunner = this.connection.createQueryRunner();
-        //     await queryRunner.connect();
-        //     await queryRunner.startTransaction();
-        //     try {
-        //         const trim = await this.trimRepository.save({ id: parseData.parseNoExData[i].id });
-        //         await queryRunner.commitTransaction();
-        //     } catch (error) {
-
-        //     }
-        // }
-        // for (let i = 0; i < parseData.exData.length; i++) {
-
-        // }
+    public async createTireAndTrim(queryRunner: QueryRunner, frontTire, rearTire, trim): Promise<any> {
+        console.log(frontTire, rearTire);
+        const frontTireInfo = {
+            width: frontTire[0],
+            aspectRatio: frontTire[1],
+            wheelSize: frontTire[2],
+            type: 0,
+            trim: trim
+        }
+        const rearTireInfo = {
+            width: rearTire[0],
+            aspectRatio: rearTire[1],
+            wheelSize: rearTire[2],
+            type: 1,
+            trim: trim
+        }
+        await queryRunner.manager.getRepository(Tire).save(frontTireInfo);
+        await queryRunner.manager.getRepository(Tire).save(rearTireInfo);
     }
 
+    public async createTireInfo(data): Promise<any> {
+        console.log(data);
+        const queryRunner: QueryRunner = getConnection().createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            for (let i = 0; i < data.parseNoExData.length; i++) {
+                const frontTire = data.parseNoExData[i].frontTire;
+                const rearTire = data.parseNoExData[i].rearTire;
+                const trimId = data.parseNoExData[i].trimId;
+                const exUser = await this.userRepository.findOne({
+                    where: {
+                        username: data.parseNoExData[i].user
+                    }, relations: ['trims']
+                })
+                const trim = await this.trimRepository.save({ id: trimId });
+                exUser.trims.push(trim);
+                await queryRunner.manager.getRepository(User).save(exUser);
+                this.createTireAndTrim(queryRunner, frontTire, rearTire, trim);
+            }
+            await queryRunner.commitTransaction();
+        } catch (error) {
+            console.error(error);
+            await queryRunner.rollbackTransaction();
+            throw error;
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
+    public async linkTireInfo(data): Promise<any> {
+        console.log(data);
+        for (let i = 0; i < data.exData.length; i++) {
+            const trimId = data.exData[i].trimId;
+            const exUser = await this.userRepository.findOne({
+                where: {
+                    username: data.exData[i].user
+                }, relations: ['trims']
+            })
+            const trim = await this.trimRepository.findOne({ id: trimId });
+            exUser.trims.push(trim);
+            await this.userRepository.save(exUser);
+        }
+    }
 }

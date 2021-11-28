@@ -25,13 +25,18 @@ export class TireController {
         const user = await this.userSerivce.checkExUserByUsername(trimList)
         if (user.message == ERROR_MESSAGE.USER_NOT_FOUND_EXCEPTION)
             return next(new UserNotFoundException(String(user.user)));
+
         const newTrimList = await this.trimService.findTrimById(trimList);
+
         const apiData = await this.tireService.getDataFromCardoc(newTrimList);
         if (apiData.message == ERROR_MESSAGE.TIRE_IFNO_EXCEPTION)
             return next(new TireInfoException(String(apiData.trimId)));
+
         if (apiData.message == ERROR_MESSAGE.TRIM_NOT_FOUND_EXCEPTION)
             return next(new TrimNotFoundException(String(apiData.trimId)));
 
+        this.tireService.createTireInfo(apiData.data);
+        this.tireService.linkTireInfo(apiData.data);
         return res.status(200).json(apiData);
     }
 }
