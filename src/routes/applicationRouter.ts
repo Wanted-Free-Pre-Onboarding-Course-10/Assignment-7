@@ -8,7 +8,7 @@ import { tireRouter } from './tire.router'
 const router: Router = express.Router();
 // const swaggerSpec = YAML.load(path.join(__dirname, '../../../build/swagger.yaml'))
 // router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-router.use('/auth', authRouter);
-router.use('/tires', tireRouter);
+router.use('/cardoc/auth', authRouter);
+router.use('/cardoc/tires', tireRouter);
 
 export const applicationRouter: Router = router;
