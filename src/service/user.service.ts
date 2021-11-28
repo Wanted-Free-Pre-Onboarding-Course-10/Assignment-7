@@ -1,5 +1,6 @@
 import { getConnection, Repository } from "typeorm";
 import { User } from "../entity/user";
+import { UserNotFoundException } from '../exception/user_not_found_exception'
 
 export class UserService {
     private userRepository: Repository<User>;
@@ -12,6 +13,17 @@ export class UserService {
         const user = await this.userRepository
             .findOne({ where: { username } });
         return user;
+    }
+
+    async checkExUserByUsername(userList) {
+        for (let i = 0; i < userList.length; i++) {
+            const username = userList[i].id;
+            const exUser = await this.userRepository
+                .findOne({ where: { username } });
+            if (!exUser) {
+                throw new UserNotFoundException(String(username));
+            }
+        }
     }
 
     async createUser(createUserInfo) {

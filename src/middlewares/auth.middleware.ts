@@ -1,6 +1,7 @@
 import { Response, NextFunction } from "express"
 import { Jwt } from "../utils/jwt-utils";
 import { DecodedRequest } from "../definition/decoded_jwt";
+import { AuthException } from '../exception/auth_exception'
 
 export const authJwt = (req: DecodedRequest, res: Response, next: NextFunction) => {
     const jwt = new Jwt();
@@ -10,8 +11,6 @@ export const authJwt = (req: DecodedRequest, res: Response, next: NextFunction) 
         req.decodedId = result.id;
         next();
     } else {
-        res.status(401).json({
-            message: result.message,
-        });
+        throw new AuthException("Unauthorized");
     }
 };
