@@ -9,14 +9,15 @@ export default () => {
     passport.use(
         new LocalStrategy(
             {
-                usernameField: "email",
+                usernameField: "username",
                 passwordField: "password",
             },
-            async (email: string, password: string, done) => {
+            async (username: string, password: string, done) => {
                 try {
                     const User = new UserService();
-                    const exUser = await User.findUserByEmail(email);
+                    const exUser = await User.findUserByUsername(username);
                     if (exUser) {
+
                         const result = await bcrypt.compare(password, exUser.password);
                         if (result) {
                             return done(null, exUser);
@@ -25,7 +26,7 @@ export default () => {
                         }
                     } else {
                         return done(null, false, {
-                            message: "Email Invalid",
+                            message: "User Invalid",
                         });
                     }
                 } catch (error) {

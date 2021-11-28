@@ -1,25 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpException } from '../exception/http_exception'
 import { AuthException } from '../exception/auth_exception';
-import { Jwt } from "../jwt-util/jwt-utils";
-import jwt from 'jsonwebtoken';
-import dotenv from "dotenv";
+import { Jwt } from "../utils/jwt-utils";
 import passport from "passport";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
 import { UserService } from "../service/user.service";
 dotenv.config();
+
 export class AuthController {
     private userService: UserService;
     private jwtutils: Jwt;
 
     public async signup(req: Request, res: Response, next: NextFunction): Promise<any> {
         this.userService = new UserService();
-        const { email, password } = req.body;
+        const { username, password } = req.body;
         const encryptedPassword = await bcrypt.hashSync(password, +process.env.SALT_ROUNDS);
         try {
-            const { exUser, newUser } = await this.userService.createUser({ email: email, password: encryptedPassword });
+            const { exUser, newUser } = await this.userService.createUser({ username, password: encryptedPassword });
             if (exUser) {
-                next(new HttpException(400, "Email duplicated"));
+                next(new HttpException(400, "User duplicated"));
             }
             else {
                 const userInfo = {
@@ -29,7 +29,7 @@ export class AuthController {
                 res.status(200).json({
                     result: true,
                     userInfo: userInfo,
-                    message: "signup successful",
+                    message: "Signup successful",
                 });
             }
         }
@@ -50,7 +50,8 @@ export class AuthController {
             this.userService = new UserService();
             this.jwtutils = new Jwt();
             if (authError || userId == false) {
-                next(new HttpException(400, info.message));;
+                return next(new HttpException(400, "User Invaild"));
+
             }
             const accessToken = this.jwtutils.accessSign(userId);
             res.cookie("authorization", accessToken, {

@@ -1,14 +1,16 @@
-import { Entity, Column, OneToMany } from "typeorm";
+import { Entity, Column, ManyToMany, JoinTable } from "typeorm";
 import { Base } from './base.entity';
-import dotenv from "dotenv";
-dotenv.config();
+import { Trim } from "./trim";
 @Entity()
 export class User extends Base {
 
     @Column({ unique: true })
-    email: string;
+    username: string;
 
     @Column()
     password: string;
 
+    @ManyToMany(() => Trim, trim => trim.users)
+    @JoinTable()
+    trims: Trim[];
 }
