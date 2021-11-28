@@ -6,6 +6,7 @@ import { UserService } from '../service/user.service';
 import { UserNotFoundException } from '../exception/user_not_found_exception'
 import { TireInfoException } from '../exception/tire_info_exception';
 import { TrimNotFoundException } from '../exception/trim_not_found_exception';
+import { UserNumberException } from '../exception/user_number_exception';
 import { ERROR_MESSAGE } from '../exception/message'
 export class TireController {
 
@@ -28,6 +29,8 @@ export class TireController {
         this.trimService = new TrimService();
         this.tireService = new TireService();
         this.userSerivce = new UserService();
+        if (trimList.length > 5)
+            return next(new UserNumberException(trimList.length));
         const user = await this.userSerivce.checkExUserByUsername(trimList)
         if (user.message == ERROR_MESSAGE.USER_NOT_FOUND_EXCEPTION)
             return next(new UserNotFoundException(String(user.user)));
