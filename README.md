@@ -53,7 +53,8 @@
 ### 6. 테이블 설계
 ![image](https://user-images.githubusercontent.com/48669085/143784301-7fdac721-f036-40de-a2fb-e834a82ee672.png)
 
-### 7. API 명세 (http://3.36.121.236)
+### 7. API 명세 
+(서버 주소 : http://3.36.121.236)를 잘 확인해주세요
 [API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
 1. 아래의 명세서를 클릭해주세요
 [API 명세서](https://documenter.getpostman.com/view/10344809/UVJckGYG#4a31a672-6c1c-4480-9db5-454de9d8e37d)
